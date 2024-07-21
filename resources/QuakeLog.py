@@ -106,21 +106,23 @@ class QuakeLog:
             Returns:
             str: A formatted string containing the count of  'kill by means' occurrence across all games.
         '''
-
         kill_by_means_counts = {}
         report = ''
-        
+
         for game_id, game_data in self.games.items():
             report += f'\nGame: {game_id}\n'
+
             for kill in game_data['kills_by_means']:
                 if kill in kill_by_means_counts:
                     kill_by_means_counts[kill] += 1
                 else:
                     kill_by_means_counts[kill] = 1
-        
-        for kill, count in kill_by_means_counts.items():
-            report += f'{kill}: {count}\n'
-        
+
+            for kill, count in kill_by_means_counts.items():
+                report += f'{kill}: {count}\n'
+
+            kill_by_means_counts = {}
+
         return report
     
 # private functions
