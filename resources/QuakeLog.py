@@ -74,12 +74,10 @@ class QuakeLog:
                         self._add_new_player(killed, current_players, current_game)
                         self._update_kills(killer, current_players, current_game)
                         self.games[current_game]['kills_by_means'].append(death_cause)
+                        self.games[current_game]['kills'] = current_players
 
             except Exception as e:
                 print(f'Error processing line: {line.strip()}. Error: {e}')
-
-        if current_game is not None:
-            self.games[current_game]['kills'] = current_players
 
         return self.games
     
