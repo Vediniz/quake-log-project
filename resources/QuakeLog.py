@@ -5,6 +5,12 @@ class QuakeLog:
         self.games = {}
 
     def read_file(self, file):
+        '''
+            Reads lines from a given file.
+            
+            Args:
+            - file (str): Path to the file to read.
+        '''
         try:
             with open(file, 'r') as f:
                 lines = f.readlines()
@@ -16,6 +22,25 @@ class QuakeLog:
             raise 
 
     def extract_informations(self, lines):
+        '''
+            Extracts game information from lines of a log.
+
+            Args:
+            - lines (list): List of strings.
+
+            Returns:
+            - dict: Dictionary containing extracted game information organized by game ID.
+                    Structure: {
+
+                        \n'games_1': {
+                        \n    'total_kills': 0,
+                        \n    'players': [],
+                        \n    'kills': {},
+                        \n    'kills_by_means': []
+                        }
+                        
+                    }
+        '''
         current_game = None
         current_players = {}
 
