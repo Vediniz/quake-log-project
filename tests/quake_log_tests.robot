@@ -5,9 +5,9 @@ Library    String
 Library    ../resources/QuakeLog.py  
 
 *** Variables ***
-${TEST_LOG_FILE}                ../data/qltest.log
-${expected_report_game_path}    ../data/qlresult_game_report.txt
-${expected_report_kbm_path}     ../data/qlresult_kbm_report.txt
+${TEST_LOG_FILE}                data/qltest.log
+${expected_report_game_path}    data/qlresult_game_report.txt
+${expected_report_kbm_path}     data/qlresult_kbm_report.txt
 *** Test Cases ***
 Test Case: Generate Game Report
     [Documentation]    Test case to verify generation of the game report.
