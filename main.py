@@ -1,9 +1,30 @@
+import sys
 from resources.QuakeLog import QuakeLog
 
-formated_data = QuakeLog()
+def main():
+    if len(sys.argv) != 3:
+        print("Usage: python script_name.py <file_path> <report_type>")
+        return
 
-file = formated_data.read_file('./data/qltest.log')
+    file_path = sys.argv[1]
+    report = sys.argv[2]
 
-file = formated_data.extract_informations(file)
+    quake_log = QuakeLog()
 
-print(file)
+    try:
+        log_list = quake_log.read_file(file_path)
+        quake_log.extract_informations(log_list)
+
+        if report == 'game_statistics':
+           report = quake_log.generate_game_report()
+        elif report == 'death_statistics':
+            report = quake_log.generate_kill_by_means_report()
+        else:
+            raise ValueError(f"Unsupported report type: '{report}'")
+
+        print(report)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+if __name__ == '__main__':
+    main()
