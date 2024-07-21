@@ -11,6 +11,7 @@ class QuakeLog:
             Args:
             - file (str): Path to the file to read.
         '''
+        
         try:
             with open(file, 'r') as f:
                 lines = f.readlines()
@@ -38,9 +39,10 @@ class QuakeLog:
                         \n    'kills': {},
                         \n    'kills_by_means': []
                         }
-                        
+
                     }
         '''
+
         current_game = None
         current_players = {}
 
@@ -48,7 +50,7 @@ class QuakeLog:
             try:
                 if re.search(r'^\s*\d{1,2}:\d{2}\s+InitGame:', line):
                     game_id = len(self.games) + 1
-                    current_game = f"games_{game_id}"
+                    current_game = f'game_{game_id}'
                     self.games[current_game] = {
                         'total_kills': 0,
                         'players': [],
@@ -74,12 +76,54 @@ class QuakeLog:
                         self.games[current_game]['kills_by_means'].append(death_cause)
 
             except Exception as e:
-                print(f"Error processing line: {line.strip()}. Error: {e}")
+                print(f'Error processing line: {line.strip()}. Error: {e}')
 
         if current_game is not None:
             self.games[current_game]['kills'] = current_players
 
         return self.games
+    
+    def generate_game_report(self):
+        '''
+            Generates a report with general game statistics.
+
+            Returns:
+            str: A formatted string containing game statistics including total kills,
+             players in each game, and each player kills count. 
+        '''
+
+        report = ''
+        for game_id, game_data in self.games.items():
+            report += f'\nGame: {game_id}\n'
+            report += f'Total Kills: {game_data['total_kills']}\n'
+            report += f'Players: {', '.join(game_data['players'])}\n'
+            report += f'Kills: {game_data['kills']}\n'
+        return report
+        
+
+    def generate_kill_by_means_report(self):
+        '''
+            Generates a report with .
+
+            Returns:
+            str: A formatted string containing the count of  'kill by means' occurrence across all games.
+        '''
+
+        kill_by_means_counts = {}
+        report = ''
+        
+        for game_id, game_data in self.games.items():
+            report += f'\nGame: {game_id}\n'
+            for kill in game_data['kills_by_means']:
+                if kill in kill_by_means_counts:
+                    kill_by_means_counts[kill] += 1
+                else:
+                    kill_by_means_counts[kill] = 1
+        
+        for kill, count in kill_by_means_counts.items():
+            report += f'{kill}: {count}\n'
+        
+        return report
     
 # private functions
     def _add_new_player(self, player_name, current_players, current_game):
