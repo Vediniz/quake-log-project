@@ -92,10 +92,10 @@ class QuakeLog:
 
         report = ''
         for game_id, game_data in self.games.items():
-            report += f'\nGame: {game_id}\n'
-            report += f'Total Kills: {game_data['total_kills']}\n'
-            report += f'Players: {', '.join(game_data['players'])}\n'
-            report += f'Kills: {game_data['kills']}\n'
+            report += f"\nGame: {game_id}\n"
+            report += f"Total Kills: {game_data['total_kills']}\n"
+            report += f"Players: {', '.join(game_data['players'])}\n"
+            report += f"Kills: {game_data['kills']}\n"
         return report
         
 
