@@ -1,0 +1,25 @@
+
+Game: game_1
+Total Kills: 0
+Players: Player1
+Kills: {}
+
+Game: game_2
+Total Kills: 3
+Players: Player1, Player2, Player3
+Kills: {'Player1': 3, 'Player2': 0, 'Player3': 0}
+
+Game: game_3
+Total Kills: 3
+Players: Player1, Player0, Player2, Player3
+Kills: {'Player1': 1, 'Player0': 2, 'Player2': 0, 'Player3': 0}
+
+Game: game_4
+Total Kills: 5
+Players: Player1, Player4, Player2, Player0, Player3
+Kills: {'Player1': 0, 'Player4': 2, 'Player2': 3, 'Player0': 0, 'Player3': 0}
+
+Game: game_5
+Total Kills: 5
+Players: Player1, Player4, Player2, Player0, Player3
+Kills: {'Player1': 0, 'Player4': 2, 'Player2': 3, 'Player0': 0, 'Player3': 0}
