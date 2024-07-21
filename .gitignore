@@ -1,0 +1,6 @@
+.venv
+
+__pycache__
+
+tests/results/output.xml
+tests/results/report.html
